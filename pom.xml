@@ -53,7 +53,7 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>
-                        com.scientificcalculator.MainApp
+                        com.gustavo.calculator.MainApp
                     </mainClass>
                 </configuration>
             </plugin>
