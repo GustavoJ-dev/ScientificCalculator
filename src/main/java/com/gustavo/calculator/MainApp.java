@@ -9,11 +9,10 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("/fxml/ScientificCalculator.fxml")
-        );
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/ScientificCalculator.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
+        scene.getStylesheets().add(getClass().getResource("/css/calculator.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
