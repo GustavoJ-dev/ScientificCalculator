@@ -45,12 +45,20 @@
 }
 
 #expressionLabel {
-    -fx-font-size: 15px;
+    -fx-font-family: "Press Start 2P";
+    -fx-font-size: 12px;
     -fx-text-fill: #b5b5b5;
 }
 
 #resultLabel {
-    -fx-font-size: 34px;
+    -fx-font-family: "Press Start 2P";
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
+}
+
+.toggle-button{
+
+    -fx-font-family: "Press Start 2P";
+    -fx-font-size: 12px;
 }
