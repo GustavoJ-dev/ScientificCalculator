@@ -20,6 +20,10 @@ public class CalculatorController {
     @FXML
     private Label resultLabel;
 
+    private double primeiroOperando;
+    private String operador;
+    private boolean novoOperando = true;
+
     @FXML
     public void initialize(){
 
@@ -29,17 +33,103 @@ public class CalculatorController {
     @FXML
     private void handleNumber(ActionEvent event){
 
-        Button button = (Button) event.getSource();
+       Button button = (Button) event.getSource();
 
-        String value = button.getText();
+       String numero = button.getText();
 
-        String currentText = resultLabel.getText();
+       if (novoOperando || resultLabel.getText().equals("0")) {
+           resultLabel.setText(numero);
+           novoOperando = false;
+       } else {
+           resultLabel.setText(resultLabel.getText() + numero);
+       }
+    }
 
-        if (currentText.equals("0")){
+    @FXML
+    private void handleOperator(ActionEvent event){
 
-            resultLabel.setText(value);
+        Button button = (Button)  event.getSource();
+        String novoOperador = button.getText();
+
+        double segundoOperando = Double.parseDouble(resultLabel.getText());
+
+        if (operador != null){
+
+            primeiroOperando = calcular(primeiroOperando, segundoOperando, operador);
+
+            resultLabel.setText(formatarResultado(primeiroOperando));
+        }else {
+
+            primeiroOperando = segundoOperando;
+        }
+
+        operador = novoOperador;
+
+        expressionLabel.setText(formatarResultado(primeiroOperando) + " " + operador);
+
+        novoOperando = true;
+    }
+
+    private double calcular(double primeiroOperando, double segundoOperando, String operador){
+
+        return switch (operador) {
+            case "+" -> primeiroOperando + segundoOperando;
+            case "-" -> primeiroOperando - segundoOperando;
+            case "*" -> primeiroOperando * segundoOperando;
+            case "/" -> primeiroOperando / segundoOperando;
+            default -> segundoOperando;
+        };
+    }
+
+    private String formatarResultado(double resultado){
+
+        if (resultado == (long) resultado){
+
+            return String.valueOf((long) resultado);
+
         } else {
-            resultLabel.setText(currentText + value);
+
+            return String.valueOf(resultado);
+        }
+    }
+
+    @FXML
+    private void handleEquals(ActionEvent event){
+
+        if (operador == null){
+            return;
+        }
+
+        double segundoOperando = Double.parseDouble(resultLabel.getText());
+
+        double resultado = calcular(primeiroOperando, segundoOperando, operador);
+
+        expressionLabel.setText(formatarResultado(primeiroOperando) + " " + operador + " " +
+                 formatarResultado(segundoOperando));
+
+        resultLabel.setText(formatarResultado(resultado));
+
+        primeiroOperando = resultado;
+        operador = null;
+        novoOperando = true;
+
+
+    }
+
+    @FXML
+    private void handleDecimal(ActionEvent event){
+
+        String atual = resultLabel.getText();
+
+        if (novoOperando) {
+
+            resultLabel.setText("0.");
+            novoOperando = false;
+            return;
+        }
+
+        if (!atual.contains(".")) {
+            resultLabel.setText(atual + ".");
         }
     }
 

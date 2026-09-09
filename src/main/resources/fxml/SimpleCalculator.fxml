@@ -60,7 +60,8 @@
                         GridPane.columnIndex="2"
                         GridPane.rowIndex="0"
                         prefHeight="65"
-                        prefWidth="65"/>
+                        prefWidth="65"
+                        onAction="#handleOperator"/>
             </GridPane>
 
 
@@ -97,7 +98,8 @@
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="0"
-                        GridPane.columnIndex="3"/>
+                        GridPane.columnIndex="3"
+                        onAction="#handleOperator"/>
 
 
                 <!-- LINHA 2 -->
@@ -126,7 +128,8 @@
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="1"
-                        GridPane.columnIndex="3"/>
+                        GridPane.columnIndex="3"
+                        onAction="#handleOperator"/>
 
                 <!-- LINHA 3 -->
                 <Button text="1"
@@ -154,7 +157,8 @@
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="2"
-                        GridPane.columnIndex="3"/>
+                        GridPane.columnIndex="3"
+                        onAction="#handleOperator"/>
 
                 <!-- LINHA 4 -->
                 <Button text="0"
@@ -169,13 +173,15 @@
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="3"
-                        GridPane.columnIndex="2"/>
+                        GridPane.columnIndex="2"
+                        onAction="#handleDecimal"/>
 
                 <Button text="="
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="3"
-                        GridPane.columnIndex="3"/>
+                        GridPane.columnIndex="3"
+                        onAction="#handleEquals"/>
 
 
             </GridPane>
