@@ -48,13 +48,15 @@
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="0"
                         prefHeight="65"
-                        prefWidth="140"/>
+                        prefWidth="140"
+                    onAction="#handleClear"/>
 
                 <Button text="⌫"
                         GridPane.columnIndex="1"
                         GridPane.rowIndex="0"
                         prefHeight="65"
-                        prefWidth="65"/>
+                        prefWidth="65"
+                        onAction="#handleBackspace"/>
 
                 <Button text="×"
                         GridPane.columnIndex="2"
@@ -182,7 +184,6 @@
                         GridPane.rowIndex="3"
                         GridPane.columnIndex="3"
                         onAction="#handleEquals"/>
-
 
             </GridPane>
 

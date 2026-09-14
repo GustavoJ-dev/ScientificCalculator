@@ -59,31 +59,36 @@
                         prefWidth="140"
                         GridPane.rowIndex="0"
                         GridPane.columnIndex="0"
-                        GridPane.columnSpan="2"/>
+                        GridPane.columnSpan="2"
+                        onAction="#handleClear"/>
 
                 <Button text="⌫"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="0"
-                        GridPane.columnIndex="2"/>
+                        GridPane.columnIndex="2"
+                        onAction="#handleBackspace"/>
 
                 <Button text="×"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="0"
-                        GridPane.columnIndex="3"/>
+                        GridPane.columnIndex="3"
+                        onAction="#handleOperator"/>
 
                 <Button text="sin"
                         prefHeight="65"
                         prefWidth="79"
                         GridPane.rowIndex="0"
-                        GridPane.columnIndex="4"/>
+                        GridPane.columnIndex="4"
+                        onAction="#handleScientificOperation"/>
 
                 <Button text="cos"
                         prefHeight="65"
                         prefWidth="79"
                         GridPane.rowIndex="0"
-                        GridPane.columnIndex="5"/>
+                        GridPane.columnIndex="5"
+                        onAction="#handleScientificOperation"/>
 
 
                 <!-- LINHA 2 -->
@@ -92,37 +97,43 @@
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="1"
-                        GridPane.columnIndex="0"/>
+                        GridPane.columnIndex="0"
+                        onAction="#handleNumber"/>
 
                 <Button text="8"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="1"
-                        GridPane.columnIndex="1"/>
+                        GridPane.columnIndex="1"
+                        onAction="#handleNumber"/>
 
                 <Button text="9"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="1"
-                        GridPane.columnIndex="2"/>
+                        GridPane.columnIndex="2"
+                        onAction="#handleNumber"/>
 
                 <Button text="+"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="1"
-                        GridPane.columnIndex="3"/>
+                        GridPane.columnIndex="3"
+                        onAction="#handleOperator"/>
 
                 <Button text="tan"
                         prefHeight="65"
                         prefWidth="79"
                         GridPane.rowIndex="1"
-                        GridPane.columnIndex="4"/>
+                        GridPane.columnIndex="4"
+                        onAction="#handleScientificOperation"/>
 
                 <Button text="log"
                         prefHeight="65"
                         prefWidth="79"
                         GridPane.rowIndex="1"
-                        GridPane.columnIndex="5"/>
+                        GridPane.columnIndex="5"
+                        onAction="#handleScientificOperation"/>
 
 
                 <!-- LINHA 3 -->
@@ -131,37 +142,43 @@
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="2"
-                        GridPane.columnIndex="0"/>
+                        GridPane.columnIndex="0"
+                        onAction="#handleNumber"/>
 
                 <Button text="5"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="2"
-                        GridPane.columnIndex="1"/>
+                        GridPane.columnIndex="1"
+                        onAction="#handleNumber"/>
 
                 <Button text="6"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="2"
-                        GridPane.columnIndex="2"/>
+                        GridPane.columnIndex="2"
+                        onAction="#handleNumber"/>
 
                 <Button text="-"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="2"
-                        GridPane.columnIndex="3"/>
+                        GridPane.columnIndex="3"
+                        onAction="#handleOperator"/>
 
                 <Button text="ln"
                         prefHeight="65"
                         prefWidth="79"
                         GridPane.rowIndex="2"
-                        GridPane.columnIndex="4"/>
+                        GridPane.columnIndex="4"
+                        onAction="#handleScientificOperation"/>
 
                 <Button text="\%"
                         prefHeight="65"
                         prefWidth="79"
                         GridPane.rowIndex="2"
-                        GridPane.columnIndex="5"/>
+                        GridPane.columnIndex="5"
+                        onAction="#handleScientificOperation"/>
 
 
                 <!-- LINHA 4 -->
@@ -170,37 +187,43 @@
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="3"
-                        GridPane.columnIndex="0"/>
+                        GridPane.columnIndex="0"
+                        onAction="#handleNumber"/>
 
                 <Button text="2"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="3"
-                        GridPane.columnIndex="1"/>
+                        GridPane.columnIndex="1"
+                        onAction="#handleNumber"/>
 
                 <Button text="3"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="3"
-                        GridPane.columnIndex="2"/>
+                        GridPane.columnIndex="2"
+                        onAction="#handleNumber"/>
 
                 <Button text="÷"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="3"
-                        GridPane.columnIndex="3"/>
+                        GridPane.columnIndex="3"
+                        onAction="#handleOperator"/>
 
                 <Button text="x²"
                         prefHeight="65"
                         prefWidth="79"
                         GridPane.rowIndex="3"
-                        GridPane.columnIndex="4"/>
+                        GridPane.columnIndex="4"
+                        onAction="#handleScientificOperation"/>
 
                 <Button text="xʸ"
                         prefHeight="65"
                         prefWidth="79"
                         GridPane.rowIndex="3"
-                        GridPane.columnIndex="5"/>
+                        GridPane.columnIndex="5"
+                        onAction="#handleScientificOperation"/>
 
 
                 <!-- LINHA 5 -->
@@ -210,31 +233,36 @@
                         prefWidth="140"
                         GridPane.rowIndex="4"
                         GridPane.columnIndex="0"
-                        GridPane.columnSpan="2"/>
+                        GridPane.columnSpan="2"
+                        onAction="#handleEquals"/>
 
                 <Button text="."
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="4"
-                        GridPane.columnIndex="2"/>
+                        GridPane.columnIndex="2"
+                        onAction="#handleDecimal"/>
 
                 <Button text="0"
                         prefHeight="65"
                         prefWidth="65"
                         GridPane.rowIndex="4"
-                        GridPane.columnIndex="3"/>
+                        GridPane.columnIndex="3"
+                        onAction="#handleNumber"/>
 
                 <Button text="√"
                         prefHeight="65"
                         prefWidth="79"
                         GridPane.rowIndex="4"
-                        GridPane.columnIndex="4"/>
+                        GridPane.columnIndex="4"
+                        onAction="#handleScientificOperation"/>
 
                 <Button text="1/x"
                         prefHeight="65"
                         prefWidth="79"
                         GridPane.rowIndex="4"
-                        GridPane.columnIndex="5"/>
+                        GridPane.columnIndex="5"
+                        onAction="#handleScientificOperation"/>
 
             </GridPane>
 
