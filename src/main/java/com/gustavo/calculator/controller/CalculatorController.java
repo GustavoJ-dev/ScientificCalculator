@@ -1,5 +1,6 @@
 package com.gustavo.calculator.controller;
 
+import com.gustavo.calculator.model.CalculatorState;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,14 +21,18 @@ public class CalculatorController {
     @FXML
     private Label resultLabel;
 
-    private double primeiroOperando;
-    private String operador;
-    private boolean novoOperando = true;
+    private final CalculatorState state;
+
+
+    public CalculatorController(CalculatorState state) {
+        this.state = state;
+    }
 
     @FXML
     public void initialize(){
 
-        resultLabel.setText("0");
+        expressionLabel.setText(state.getExpression());
+        resultLabel.setText(state.getResult());
     }
 
     @FXML
@@ -37,12 +42,24 @@ public class CalculatorController {
 
        String numero = button.getText();
 
-       if (novoOperando || resultLabel.getText().equals("0")) {
+       String atual = resultLabel.getText();
+
+       if (state.isNovoOperando()) {
+
            resultLabel.setText(numero);
-           novoOperando = false;
+
+           state.setNovoOperando(false);
+
+       }else if (atual.equals("0")) {
+
+           resultLabel.setText(numero);
+
        } else {
-           resultLabel.setText(resultLabel.getText() + numero);
+
+           resultLabel.setText(atual + numero);
        }
+
+       state.setResult(resultLabel.getText());
     }
 
     @FXML
@@ -53,21 +70,24 @@ public class CalculatorController {
 
         double segundoOperando = Double.parseDouble(resultLabel.getText());
 
-        if (operador != null){
+        if (state.getOperador() != null){
 
-            primeiroOperando = calcular(primeiroOperando, segundoOperando, operador);
+            state.setPrimeiroOperando(calcular(state.getPrimeiroOperando(), segundoOperando, state.getOperador()));
 
-            resultLabel.setText(formatarResultado(primeiroOperando));
+            resultLabel.setText(formatarResultado(state.getPrimeiroOperando()));
         }else {
 
-            primeiroOperando = segundoOperando;
+            state.setPrimeiroOperando(segundoOperando);
         }
 
-        operador = novoOperador;
+        state.setOperador(novoOperador);
 
-        expressionLabel.setText(formatarResultado(primeiroOperando) + " " + operador);
+        expressionLabel.setText(formatarResultado(state.getPrimeiroOperando()) + " " + state.getOperador());
 
-        novoOperando = true;
+        state.setNovoOperando(true);
+
+        state.setExpression(expressionLabel.getText());
+        state.setResult(resultLabel.getText());
     }
 
     private double calcular(double primeiroOperando, double segundoOperando, String operador){
@@ -96,24 +116,25 @@ public class CalculatorController {
     @FXML
     private void handleEquals(ActionEvent event){
 
-        if (operador == null){
+        if (state.getOperador() == null){
             return;
         }
 
         double segundoOperando = Double.parseDouble(resultLabel.getText());
 
-        double resultado = calcular(primeiroOperando, segundoOperando, operador);
+        double resultado = calcular(state.getPrimeiroOperando(), segundoOperando, state.getOperador());
 
-        expressionLabel.setText(formatarResultado(primeiroOperando) + " " + operador + " " +
+        expressionLabel.setText(formatarResultado(state.getPrimeiroOperando()) + " " + state.getOperador() + " " +
                  formatarResultado(segundoOperando));
 
         resultLabel.setText(formatarResultado(resultado));
 
-        primeiroOperando = resultado;
-        operador = null;
-        novoOperando = true;
+        state.setPrimeiroOperando(resultado);
+        state.setOperador(null);
+        state.setNovoOperando(true);
 
-
+        state.setExpression(expressionLabel.getText());
+        state.setResult(resultLabel.getText());
     }
 
     @FXML
@@ -121,38 +142,76 @@ public class CalculatorController {
 
         String atual = resultLabel.getText();
 
-        if (novoOperando) {
+        if (state.isNovoOperando()) {
 
             resultLabel.setText("0.");
-            novoOperando = false;
+            state.setNovoOperando(false);
             return;
         }
 
         if (!atual.contains(".")) {
             resultLabel.setText(atual + ".");
         }
+
+        state.setResult(resultLabel.getText());
     }
 
 
     @FXML
     private void switchToScientific(ActionEvent event) throws Exception{
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(
-                getClass().getResource("/fxml/ScientificCalculator.fxml")));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ScientificCalculator.fxml"));
+
+        loader.setControllerFactory(type ->{
+
+            if (type == CalculatorController.class){
+
+                return new CalculatorController(state);
+            }
+
+            try{
+
+                return type.getDeclaredConstructor().newInstance();
+
+            }catch (Exception e){
+
+                throw new RuntimeException(e);
+            }
+
+        });
+
+        Parent root = loader.load();
 
         Scene scene = ((Node) event.getSource()).getScene();
         scene.setRoot(root);
 
         Stage stage = (Stage) scene.getWindow();
         stage.sizeToScene();
-
     }
 
     @FXML
     private void switchToSimple(ActionEvent event) throws Exception{
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(
-                getClass().getResource("/fxml/SimpleCalculator.fxml")));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SimpleCalculator.fxml"));
+
+        loader.setControllerFactory(type -> {
+
+            if (type == CalculatorController.class) {
+                return new CalculatorController(state);
+            }
+
+            try {
+
+                return type.getDeclaredConstructor().newInstance();
+
+            } catch (Exception e) {
+
+                throw new RuntimeException(e);
+            }
+        });
+
+        Parent root = loader.load();
 
         Scene scene = ((Node) event.getSource()).getScene();
         scene.setRoot(root);
